@@ -1,0 +1,49 @@
+KYOWA interFAce Measurement and Analysis System FAMAS
+
+Contact Angle measurement(Sessile drop method) Format Version:3.5
+
+"[WORKSHEET]"
+"Measurement information:",""
+"Variations over time:","No"
+"Time interval(ms):",1000
+"Frequency:",21
+"Analysis technique:","Sessile drop"
+"Analysis method:","Standard"
+"3-State:","No"
+"Fit section setup:","No"
+"Fit section:",60
+"Detect pitch(dots):",30
+"Wait time:",1000
+"Algorithm:","Auto"
+"Image mode:","Frame"
+"Auto threshold level:","Yes"
+"Black level(%):",70
+"Threshold level:",128
+"Image process area Left:",30
+"Image process area Top:",30
+"Image process area Right:",30
+"Image process area Bottom:",30
+"Drop-trans. detect auto:","Yes"
+"Drop-trans. detect line(dot):",50,50,50,50,50,50
+"Correction of curvature:","No"
+"Radius of curvature(um):",1000000
+"Control mode:","Standard"
+"Dispenser auto:","Yes"
+"Droplet vol. Control:","Yes"
+"Dispense volume(uL):",2
+"Drop-trans. auto:","Yes"
+"Stage auto:","Yes"
+"Back and forth:","No"
+"Plotting pitch(mm):",6
+"Repeat times:",10
+"Auto liquid change measuremnt:",0,0,0,0,0
+"Solid change:","No"
+"Vol. unit:","uL"
+"Tolerance mode:","No"
+"Tolerance lower limit:",0
+"Tolerance upper limit:",180
+"StageControl mode:",1
+"Mesure position file name.:",""
+
+,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,"Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","Avg.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D.","S.D."
+"Comment","Time(ms)","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View","C.A.(deg)","C.A.R(deg)","V0(uL)","V1(uL)","V2(uL)","VR(%)","r(um)","h(um)","residual L(dot)","residual R(dot)","x(mm)","y(mm)","T(deg)","H(%)","View"
