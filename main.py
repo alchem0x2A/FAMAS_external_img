@@ -1,4 +1,17 @@
 import sys,os,shutil,glob
+import Tkinter as tk
+import tkFileDialog as tF
+import tkMessageBox as tM
+
+#only available in gui-mode
+
+# gui = False
+#
+# try:
+#     import easygui
+#     gui = True
+# except ImportError:
+#     gui = False
 
 template = "~template"
 line_has_img = r'"",1000,"-----","","","","","","","","","","","","","","STD","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","-----","","","","","","","","","","","-----","-----","","","-----"'
@@ -12,6 +25,58 @@ line_pixel = r'"Row","Column","Horizontal(dot)","Vertical(dot)","Diameter(um)",'
 num_break = 3
 num_col = 10
 num_row = 48
+
+
+class MainApp(tk.Frame):
+    def __init__(self, parent, *args, **kwargs):
+        tk.Frame.__init__(self, parent, *args, **kwargs)
+        self.parent = parent
+        self.file_type = None
+        self.label = tk.Label(text = "Folder or Single Image ?")
+        self.label.pack(side = "top")
+        self.bt_dir = tk.Button(text = "Folder", command = self.fun_bt_dir)
+        self.bt_file = tk.Button(text = "Image(s)", command = self.fun_bt_file)
+        self.bt_dir.pack()
+        self.bt_file.pack()
+
+
+
+    def fun_bt_file(self):
+        self.file_type = "f"
+        self.get_file_dir()
+
+    def fun_bt_dir(self):
+        self.file_type = "d"
+        self.get_file_dir()
+
+    def get_file_dir(self):
+        options = {"parent":self.parent}
+        if self.file_type == "f":
+            options["filetypes"] = [("BitMap Images", ".bmp")]
+            options["initialdir"] = "."
+            options["title"] = "Choose Image(s)"
+            options["multiple"] = 1
+            files = tF.askopenfilename(**options)
+            stat = []
+            info = []
+            for f in files:
+                [s,i] = RenameFig(f)
+                stat.append(s)
+                info.append(i)
+            fail_count = stat.count("e")
+            tM.showinfo("Convert Result", \
+            "Suucessfully converted %d/%d files"%(len(stat)-fail_count, len(stat)) ,**{"parent" : self.parent})
+            self.parent.destroy()
+        if self.file_type == "d":
+            options["initialdir"] = "."
+            f = tF.askdirectory(**options)
+            [s,i] = RenameFig(f)
+            if s == "e":
+                tM.showinfo("Convert Result", "Error :"+i , **{"parent" : self.parent})
+            else:
+                tM.showinfo("Convert Result", "Sucess!" , **{"parent" : self.parent})
+            self.parent.destroy()
+
 
 def MimicCSV(num_figs, out):
     if num_figs is not 0:
@@ -72,8 +137,7 @@ def RenameFig(dir_fig):
 
     name_root = None
     if os.path.exists(abs_dir) is not True:
-        print "The item you choose does not exists, exit!"
-        exit()
+        return ["e","The item you choose does not exists, exit!"]
 
     if os.path.isdir(abs_dir) is not True:
         print dir_name
@@ -86,24 +150,24 @@ def RenameFig(dir_fig):
                     os.mkdir(name_root)
                     success_mkdir = True
                 except OSError:
-                    print "The directory with the same name has existed, delete!"
+                    # return ["e","The directory with the same name has existed, delete!"]
                     os.removedirs(name_root)
 
             shutil.copyfile(abs_dir, os.path.join(name_root, os.path.basename(name_root)+"_R0001C01.bmp"))
             MimicCSV(1, name_root+".csv")
+            return ["s", name_root+".csv"]
         else:
-            print "The file is not a bmp image, exit!\n"
-            exit()
+            return ["e", "The file is not a bmp image, exit!\n"]
     else:
-        print dir_father
+        # print dir_father
         img_pattern = os.path.join(dir_father, dir_name, "*.bmp")
         all_imgs = glob.glob(img_pattern)
         if len(all_imgs) == 0:
-            print "No bmp images in the folder, exit!"
-            exit()
+            return ["e", "No bmp images in the folder, exit!"]
+
         else:
             name_root = os.path.join(dir_father, dir_name+'_new')
-            print name_root
+            # print name_root
 
             success_mkdir = False
             while success_mkdir is not True:
@@ -111,13 +175,30 @@ def RenameFig(dir_fig):
                     os.mkdir(name_root)
                     success_mkdir = True
                 except OSError:
-                    print "The directory with the same name has existed, delete!"
+                    # print "The directory with the same name has existed, delete!"
                     os.removedirs(name_root)
 
             for img in sorted(all_imgs):
                 i = sorted(all_imgs).index(img)
                 shutil.copyfile(img, os.path.join(name_root, os.path.basename(name_root)+"_R%04dC01.bmp"%(i+1)))
             MimicCSV(len(all_imgs), name_root+".csv")
+            return ["s", name_root+".csv"]
+
+def main(*args):
+    if len(args) > 2:
+        print "Error: Too many input variables!"
+    elif len(args) == 2:
+        [status, info] = RenameFig(args[1])
+        if status == "e":
+            print "Error: %s"%info
+        else:
+            print "Success! Please open file %s"%info
+    else: #no input
+
+        window = tk.Tk()
+        MainApp(window).pack(side = "top", fill = "both", expand = True)
+        window.mainloop()
+
 
 
 
@@ -126,4 +207,6 @@ def RenameFig(dir_fig):
 
 if __name__ == '__main__':
     # MimicCSV(2, 'test.csv')
-    RenameFig('test_old')
+    # RenameFig('test_old')
+    print sys.argv
+    main(sys.argv)
